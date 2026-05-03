@@ -1,0 +1,143 @@
+.report-detail {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.report-detail__pill {
+  display: inline-block;
+  background: var(--aduin-brown-btn);
+  color: #fff;
+  font-weight: 700;
+  font-size: clamp(0.95rem, 2.6vw, 1.05rem);
+  padding: 0.45rem 1.25rem;
+  border-radius: var(--aduin-radius-pill);
+  margin-bottom: clamp(1rem, 3vw, 1.35rem);
+  box-shadow: var(--aduin-shadow);
+}
+
+.report-detail__card {
+  background: var(--aduin-brown-btn);
+  border-radius: var(--aduin-radius);
+  padding: clamp(1rem, 3vw, 1.35rem);
+  box-shadow: var(--aduin-shadow);
+}
+
+.report-detail__list {
+  margin: 0;
+}
+
+.report-detail__row {
+  display: grid;
+  grid-template-columns: minmax(5.5rem, 32%) 1fr;
+  gap: 0.35rem 0.75rem;
+  padding: 0.55rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.12);
+  font-size: clamp(0.88rem, 2.3vw, 0.95rem);
+}
+
+.report-detail__row:last-of-type {
+  border-bottom: none;
+}
+
+.report-detail__row--block {
+  grid-template-columns: 1fr;
+}
+
+.report-detail__row dt {
+  margin: 0;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.report-detail__row dd {
+  margin: 0;
+  color: var(--aduin-text);
+}
+
+.report-detail__foto {
+  background: rgba(0, 0, 0, 0.15);
+  border-radius: 10px;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.report-detail__btn {
+  width: 100%;
+  margin-top: 1rem;
+  padding: 0.75rem 1rem;
+  font-weight: 700;
+}
+
+.report-detail__backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 1rem;
+  padding-bottom: max(1rem, env(safe-area-inset-bottom));
+}
+
+@media (min-width: 480px) {
+  .report-detail__backdrop {
+    align-items: center;
+  }
+}
+
+.report-detail__backdrop-hit {
+  position: absolute;
+  inset: 0;
+  border: none;
+  margin: 0;
+  padding: 0;
+  background: rgba(0, 0, 0, 0.45);
+  cursor: pointer;
+  z-index: 0;
+}
+
+.report-detail__modal {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 400px);
+  background: var(--aduin-bg-mid);
+  border-radius: var(--aduin-radius);
+  padding: 1.15rem 1.25rem 1.25rem;
+  box-shadow: var(--aduin-shadow);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.report-detail__modal-title {
+  margin: 0 0 1rem;
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  color: var(--aduin-text);
+}
+
+.report-detail__label {
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: var(--aduin-text);
+}
+
+.report-detail__select {
+  color: var(--aduin-brown-dark);
+}
+
+.report-detail__modal .aduin-field {
+  margin-bottom: 0.75rem;
+}
+
+.report-detail__modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.report-detail__modal-actions .aduin-btn {
+  padding: 0.55rem 1.1rem;
+  font-size: 0.95rem;
+}

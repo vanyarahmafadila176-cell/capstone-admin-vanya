@@ -1,0 +1,19 @@
+.aduin-logo {
+  font-family: var(--font-logo);
+  color: #fff;
+  letter-spacing: 0.06em;
+  text-shadow: 0 2px 12px rgba(0, 0, 0, 0.25);
+  user-select: none;
+}
+
+.aduin-logo--large {
+  font-size: clamp(2.75rem, 8vw, 4rem);
+}
+
+.aduin-logo--medium {
+  font-size: clamp(1.75rem, 5vw, 2.35rem);
+}
+
+.aduin-logo--small {
+  font-size: clamp(1.35rem, 4vw, 1.65rem);
+}

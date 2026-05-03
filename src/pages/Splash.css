@@ -1,0 +1,59 @@
+.splash-page {
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  padding: clamp(1.25rem, 4vw, 2.5rem) clamp(1rem, 4vw, 1.75rem) clamp(1rem, 3vw, 1.5rem);
+  max-width: 28rem;
+  margin: 0 auto;
+}
+
+.splash-page__art {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  padding-top: clamp(0.5rem, 3vw, 1.5rem);
+}
+
+.splash-illustration {
+  width: min(88vw, 280px);
+  height: auto;
+  filter: drop-shadow(0 12px 24px rgba(0, 0, 0, 0.2));
+}
+
+.splash-page__brand {
+  text-align: center;
+  margin-bottom: clamp(1.25rem, 4vw, 2rem);
+}
+
+.splash-page__tagline {
+  font-family: var(--font-serif);
+  font-size: clamp(1.15rem, 3.8vw, 1.45rem);
+  font-weight: 500;
+  color: var(--aduin-text);
+  margin: clamp(0.65rem, 2vw, 1rem) 0 0;
+  letter-spacing: 0.02em;
+}
+
+.splash-page__actions {
+  width: 100%;
+  max-width: 22rem;
+}
+
+.splash-page__login {
+  width: 100%;
+  padding-block: clamp(0.85rem, 2.5vw, 1.05rem);
+  font-size: clamp(1rem, 2.8vw, 1.1rem);
+  font-weight: 600;
+}
+
+.splash-page__footer {
+  margin: 0;
+  margin-top: clamp(1rem, 3vw, 1.5rem);
+  font-size: clamp(0.8rem, 2.2vw, 0.9rem);
+  color: var(--aduin-muted);
+  opacity: 0.9;
+}
