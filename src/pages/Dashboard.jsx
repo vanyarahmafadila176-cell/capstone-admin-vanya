@@ -34,123 +34,90 @@ export default function Dashboard() {
 
   return (
     <div className="dashboard">
-      <section className="dashboard__stats" aria-label="Ringkasan laporan">
-        <article className="dashboard__stat-card">
-          <p className="dashboard__stat-label">Total Laporan</p>
-          <p className="dashboard__stat-value">{stats.total}</p>
-        </article>
-        <article className="dashboard__stat-card">
-          <p className="dashboard__stat-label">Diproses</p>
-          <p className="dashboard__stat-value">{stats.diproses}</p>
-        </article>
-        <article className="dashboard__stat-card">
-          <p className="dashboard__stat-label">Selesai</p>
-          <p className="dashboard__stat-value">{stats.selesai}</p>
-        </article>
-        <article className="dashboard__stat-card">
-          <p className="dashboard__stat-label">Ditolak</p>
-          <p className="dashboard__stat-value">{stats.ditolak}</p>
-        </article>
+
+      <section className="dashboard__stats">
+        <div className="dashboard__stat-card">
+          <p>Total Laporan</p>
+          <h2>{stats.total}</h2>
+        </div>
+        <div className="dashboard__stat-card">
+          <p>Diproses</p>
+          <h2>{stats.diproses}</h2>
+        </div>
+        <div className="dashboard__stat-card">
+          <p>Selesai</p>
+          <h2>{stats.selesai}</h2>
+        </div>
+        <div className="dashboard__stat-card">
+          <p>Ditolak</p>
+          <h2>{stats.ditolak}</h2>
+        </div>
       </section>
 
       <div className="dashboard__section-title">Data Laporan</div>
 
       <div className="dashboard__toolbar">
-        <label className="dashboard__search">
-          <span className="visually-hidden">Cari laporan</span>
-          <span className="dashboard__search-icon" aria-hidden>
-            <IconSearch />
-          </span>
+        <div className="dashboard__search">
+          <IconSearch />
           <input
-            type="search"
-            className="aduin-input dashboard__search-input"
-            placeholder="Cari judul, pelapor, atau kategori…"
+            type="text"
+            placeholder="Search..."
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            autoComplete="off"
           />
-        </label>
+        </div>
+
         <button
-          type="button"
-          className="aduin-btn aduin-btn--primary dashboard__filter-btn"
-          onClick={() => setFilterOpen((v) => !v)}
-          aria-expanded={filterOpen}
+          className="dashboard__filter-btn"
+          onClick={() => setFilterOpen(!filterOpen)}
         >
           Filter
         </button>
       </div>
 
-      {filterOpen ? (
-        <div className="dashboard__filter-panel" role="region" aria-label="Filter kategori">
-          <label className="dashboard__filter-field">
-            <span>Kategori</span>
-            <select
-              className="aduin-input dashboard__select"
-              value={kategori}
-              onChange={(e) => setKategori(e.target.value)}
-            >
-              <option value="">Semua kategori</option>
-              {REPORT_CATEGORIES.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
-          </label>
-          {kategori ? (
-            <button
-              type="button"
-              className="aduin-link dashboard__filter-clear"
-              onClick={() => setKategori('')}
-            >
-              Hapus filter kategori
-            </button>
-          ) : null}
-        </div>
-      ) : null}
-
-      <div className="dashboard__table-wrap" role="region" aria-label="Daftar laporan">
-        <table className="dashboard__table">
-          <thead>
-            <tr>
-              <th scope="col">Laporan</th>
-              <th scope="col" className="dashboard__th-cat">
-                Kategori
-              </th>
-              <th scope="col" className="dashboard__th-status">
-                Status
-              </th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.map((r) => (
-              <tr key={r.id}>
-                <td>
-                  <div className="dashboard__cell-main">
-                    <span className="dashboard__date">{r.tanggalLabel}</span>
-                    <span className="dashboard__name">{r.pelapor}</span>
-                    <span className="dashboard__title">{r.judul}</span>
-                    <span className="dashboard__cat-mobile">{r.kategori}</span>
-                    <Link to={`/laporan/${r.id}`} className="dashboard__detail-link">
-                      Detail Laporan…
-                    </Link>
-                  </div>
-                </td>
-                <td className="dashboard__td-cat">{r.kategori}</td>
-                <td className="dashboard__td-status">
-                  <span className={`dashboard__badge dashboard__badge--${badgeKind(r.status)}`}>
-                    {r.status}
-                  </span>
-                </td>
-              </tr>
+      {filterOpen && (
+        <div className="dashboard__filter-panel">
+          <select value={kategori} onChange={(e) => setKategori(e.target.value)}>
+            <option value="">Semua kategori</option>
+            {REPORT_CATEGORIES.map((c) => (
+              <option key={c}>{c}</option>
             ))}
-          </tbody>
-        </table>
+          </select>
+        </div>
+      )}
+
+      <div className="dashboard__header">
+        <span>Laporan</span>
+        <span>Status</span>
       </div>
 
-      {filtered.length === 0 ? (
-        <p className="dashboard__empty">Tidak ada laporan yang cocok dengan filter.</p>
-      ) : null}
+      <div className="dashboard__list">
+        {filtered.map((r) => (
+          <div key={r.id} className="dashboard__card">
+
+            <div>
+              <p className="date">{r.tanggalLabel}</p>
+              <p><b>Pelapor:</b> {r.pelapor}</p>
+              <p><b>Judul:</b> {r.judul}</p>
+
+              <Link to={`/laporan/${r.id}`} className="detail">
+                Detail Laporan...
+              </Link>
+            </div>
+
+            <div className="status">
+              <span className={`badge ${badgeKind(r.status)}`}>
+                {r.status}
+              </span>
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      {filtered.length === 0 && (
+        <p className="dashboard__empty">Tidak ada laporan</p>
+      )}
     </div>
   )
 }
